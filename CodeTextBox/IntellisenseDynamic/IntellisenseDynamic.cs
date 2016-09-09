@@ -69,8 +69,8 @@ namespace Moonlight.IntellisenseDynamic
         {
             //bool|byte|sbyte|char|decimal|double|float|int|uint|long|ulong|object|short|ushort
             chainesRegexp = new Regex(@"string ([a-z0-9_]*?);|string ([a-z0-9_]*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
-            chainesFonctionRegexp = new Regex(@"string ([a-z0-9_]*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
-            tableauRegexp = new Regex(@"\[\]([a-z0-9_]*?);|\[\]([a-z0-9_]*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
+            chainesFonctionRegexp = new Regex(@"string ([a-z0-9_]*\(.*\))", RegexOptions.Compiled | RegexOptions.Multiline);
+            tableauRegexp = new Regex(@"\[\] ([a-z0-9_]*?);|\[\] ([a-z0-9_]*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
             tableauFonctionRegexp = new Regex(@"\[\] ([a-z0-9_]*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
             simpleVarRegexp = new Regex(@"bool([a-z0-9_]*?);|byte ([a-z0-9_]*?);|sbyte ([a-z0-9_]*?);|char ([a-z0-9_]*?);|decimal ([a-z0-9_]*?);|double ([a-z0-9_]*?);|float ([a-z0-9_]*?);|int ([a-z0-9_]*?);|uint ([a-z0-9_]*?);|long ([a-z0-9_]*?);|ulong ([a-z0-9_]*?);|object ([a-z0-9_]*?);|short ([a-z0-9_]*?);|ushort ([a-z0-9_]*?);|bool ([a-z0-9_]*?) |byte ([a-z0-9_]*?) |sbyte ([a-z0-9_]*?) |char ([a-z0-9_]*?) |decimal ([a-z0-9_]*?) |double ([a-z0-9_]*?) |float ([a-z0-9_]*?) |int ([a-z0-9_]*?) |uint ([a-z0-9_]*?) |long ([a-z0-9_]*?) |ulong ([a-z0-9_]*?) |object ([a-z0-9_]*?) |short ([a-z0-9_]*?) |ushort ([a-z0-9_]*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
             simpleVarFonctionRegexp = new Regex(@"bool ([a-z0-9_]*?)\(|byte ([a-z0-9_]*?)\(|sbyte ([a-z0-9_]*?)\(|char ([a-z0-9_]*?)\(|decimal ([a-z0-9_]*?)\(|double ([a-z0-9_]*?)\(|float ([a-z0-9_]*?)\(|int ([a-z0-9_]*?)\(|uint ([a-z0-9_]*?)\(|long ([a-z0-9_]*?)\(|ulong ([a-z0-9_]*?)\(|object ([a-z0-9_]*?)\(|short ([a-z0-9_]*?)\(|ushort ([a-z0-9_]*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
@@ -133,12 +133,23 @@ namespace Moonlight.IntellisenseDynamic
             codeTextbox.SelectionStart = lineStart;
             codeTextbox.SelectionLength = line.Length;
 
-
             // Process the simpleVar
             ProcessRegex(codeTextbox, line, lineStart, simpleVarRegexp, "simpleVar", m_IntellisenseTree);
 
+            ProcessRegex(codeTextbox, line, lineStart, simpleVarFonctionRegexp, "simpleVar", m_IntellisenseTree);
+
             // Process the string
             ProcessRegex(codeTextbox, line, lineStart, chainesRegexp, "chaine", m_IntellisenseTree);
+
+            ProcessRegex(codeTextbox, line, lineStart, chainesFonctionRegexp, "chaine", m_IntellisenseTree);
+
+            // Process the simpleVar
+            ProcessRegex(codeTextbox, line, lineStart, tableauRegexp, "tab", m_IntellisenseTree);
+
+            ProcessRegex(codeTextbox, line, lineStart, tableauFonctionRegexp, "tab", m_IntellisenseTree);
+            
+            // Process the string
+            ProcessRegex(codeTextbox, line, lineStart, voidFonctionRegexp, "fonctionVoid", m_IntellisenseTree);
 
             codeTextbox.SelectionStart = nPosition;
             codeTextbox.SelectionLength = 0;
@@ -163,11 +174,23 @@ namespace Moonlight.IntellisenseDynamic
             codeTextbox.SelectionStart = 0;
             codeTextbox.SelectionLength = codeTextbox.Text.Length;
 
-            // Process the keywords
+            // Process the simpleVar
             ProcessRegex(codeTextbox, codeTextbox.Text, 0, simpleVarRegexp, "simpleVar", m_IntellisenseTree);
+
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, simpleVarFonctionRegexp, "simpleVar", m_IntellisenseTree);
 
             // Process the string
             ProcessRegex(codeTextbox, codeTextbox.Text, 0, chainesRegexp, "chaine", m_IntellisenseTree);
+
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, chainesFonctionRegexp, "chaine", m_IntellisenseTree);
+
+            // Process the simpleVar
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, tableauRegexp, "tab", m_IntellisenseTree);
+
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, tableauFonctionRegexp, "tab", m_IntellisenseTree);
+
+            // Process the string
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, voidFonctionRegexp, "fonctionVoid", m_IntellisenseTree);
 
             codeTextbox.SelectionStart = nPosition;
             codeTextbox.SelectionLength = 0;

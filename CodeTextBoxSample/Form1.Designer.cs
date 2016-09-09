@@ -29,56 +29,170 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Form");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Forms", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Windows", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("File");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("IO", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("System", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("SysInfoManager");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("SysInfo", new System.Windows.Forms.TreeNode[] {
-            treeNode7});
-
             //#############################################################################################################
             
+            System.Windows.Forms.TreeNode[] treeNodeTab_method_chaine = new System.Windows.Forms.TreeNode[] {
+                new System.Windows.Forms.TreeNode("Clone()"),
+                new System.Windows.Forms.TreeNode("CompareTo()"),
+                new System.Windows.Forms.TreeNode("Contains()"),
+                new System.Windows.Forms.TreeNode("EndsWith()"),
+                new System.Windows.Forms.TreeNode("Equals()"),
+                new System.Windows.Forms.TreeNode("GetHashCode()"),
+                new System.Windows.Forms.TreeNode("GetType()"),
+                new System.Windows.Forms.TreeNode("GetTypeCode()"),
+                new System.Windows.Forms.TreeNode("IndexOf()"),
+                new System.Windows.Forms.TreeNode("ToLower()"),
+                new System.Windows.Forms.TreeNode("ToUpper()"),
+                new System.Windows.Forms.TreeNode("Insert()"),
+                new System.Windows.Forms.TreeNode("IsNormalized()"),
+                new System.Windows.Forms.TreeNode("LastIndexOf()"),
+                new System.Windows.Forms.TreeNode("Remove()"),
+                new System.Windows.Forms.TreeNode("Replace()"),
+                new System.Windows.Forms.TreeNode("Split()"),
+                new System.Windows.Forms.TreeNode("StartsWith()"),
+                new System.Windows.Forms.TreeNode("Substring()"),
+                new System.Windows.Forms.TreeNode("ToCharArray()"),
+                new System.Windows.Forms.TreeNode("Trim()")
+            };
+            foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_method_chaine)
+            {
+                Tnode.Name = Tnode.Text;
+                Tnode.Tag = "method";
+            }
+            System.Windows.Forms.TreeNode[] treeNodeTab_attribut_chaine = new System.Windows.Forms.TreeNode[] {
+                new System.Windows.Forms.TreeNode("Length")
+            };
+            foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_attribut_chaine)
+            {
+                Tnode.Name = Tnode.Text;
+                Tnode.Tag = "property";
+            }
+            System.Windows.Forms.TreeNode[] treeNodeTab_chaine = new System.Windows.Forms.TreeNode[treeNodeTab_method_chaine.Length + treeNodeTab_attribut_chaine.Length];
+            treeNodeTab_method_chaine.CopyTo(treeNodeTab_chaine, 0);
+            treeNodeTab_attribut_chaine.CopyTo(treeNodeTab_chaine, treeNodeTab_method_chaine.Length);
+            //#############################################################################################################
             System.Windows.Forms.TreeNode[] treeNodeTab_simpleVar = new System.Windows.Forms.TreeNode[] {
-            new System.Windows.Forms.TreeNode("CompareTo"),
-            new System.Windows.Forms.TreeNode("Equals"),
-            new System.Windows.Forms.TreeNode("GetHashCode"),
-            new System.Windows.Forms.TreeNode("GetType"),
-            new System.Windows.Forms.TreeNode("GetTypeCode"),
-            new System.Windows.Forms.TreeNode("ToString")
+                new System.Windows.Forms.TreeNode("CompareTo()"),
+                new System.Windows.Forms.TreeNode("Equals()"),
+                new System.Windows.Forms.TreeNode("GetHashCode()"),
+                new System.Windows.Forms.TreeNode("GetType()"),
+                new System.Windows.Forms.TreeNode("GetTypeCode()"),
+                new System.Windows.Forms.TreeNode("ToString()")
             };
             foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_simpleVar)
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "class";
             }
-            System.Windows.Forms.TreeNode treeNode_1 = new System.Windows.Forms.TreeNode("keyword");
-            System.Windows.Forms.TreeNode treeNode_2 = new System.Windows.Forms.TreeNode("classGofus");
-            System.Windows.Forms.TreeNode treeNode_3 = new System.Windows.Forms.TreeNode("classMath");
-            System.Windows.Forms.TreeNode[] treeNodeTab_chaine = new System.Windows.Forms.TreeNode[] {
-            new System.Windows.Forms.TreeNode("CompareTo"),
-            new System.Windows.Forms.TreeNode("Equals"),
-            new System.Windows.Forms.TreeNode("GetHashCode"),
-            new System.Windows.Forms.TreeNode("GetType"),
-            new System.Windows.Forms.TreeNode("GetTypeCode"),
-            new System.Windows.Forms.TreeNode("ToString")
+            //############################################################################################################# 
+            System.Windows.Forms.TreeNode[] treeNodeTab_method_tab = new System.Windows.Forms.TreeNode[] {
+                new System.Windows.Forms.TreeNode("Clone()"),
+                new System.Windows.Forms.TreeNode("CopyTo()"),
+                new System.Windows.Forms.TreeNode("Equals()"),
+                new System.Windows.Forms.TreeNode("GetEnumerator()"),
+                new System.Windows.Forms.TreeNode("GetHashCode()"),
+                new System.Windows.Forms.TreeNode("GetLength()"),
+                new System.Windows.Forms.TreeNode("GetLongLength()"),
+                new System.Windows.Forms.TreeNode("GetLowerBound()"),
+                new System.Windows.Forms.TreeNode("GetType()"),
+                new System.Windows.Forms.TreeNode("GetUpperBound()"),
+                new System.Windows.Forms.TreeNode("GetValue()"),
+                new System.Windows.Forms.TreeNode("Initialize()"),
+                new System.Windows.Forms.TreeNode("SetValue()"),
+                new System.Windows.Forms.TreeNode("ToString()")
             };
-            foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_simpleVar)
+
+            foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_method_tab)
             {
                 Tnode.Name = Tnode.Text;
-                Tnode.Tag = "class";
+                Tnode.Tag = "method";
             }
 
-            System.Windows.Forms.TreeNode treeNode_4_1 = new System.Windows.Forms.TreeNode("chaine");
-            System.Windows.Forms.TreeNode treeNode_5_1 = new System.Windows.Forms.TreeNode("simpleVar", treeNodeTab_simpleVar);
-            System.Windows.Forms.TreeNode treeNode_6 = new System.Windows.Forms.TreeNode("tab");
+            System.Windows.Forms.TreeNode[] treeNodeTab_attribut_tab = new System.Windows.Forms.TreeNode[] {
+                new System.Windows.Forms.TreeNode("IsFixedSize"),
+                new System.Windows.Forms.TreeNode("IsReadOnly"),
+                new System.Windows.Forms.TreeNode("IsSynchronized"),
+                new System.Windows.Forms.TreeNode("Length"),
+                new System.Windows.Forms.TreeNode("LongLength"),
+                new System.Windows.Forms.TreeNode("Rank"),
+                new System.Windows.Forms.TreeNode("SyncRoot")
+            };
+            foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_attribut_tab)
+            {
+                Tnode.Name = Tnode.Text;
+                Tnode.Tag = "property";
+            }
+
+            System.Windows.Forms.TreeNode[] treeNodeTab_tab = new System.Windows.Forms.TreeNode[treeNodeTab_method_tab.Length + treeNodeTab_attribut_tab.Length];
+            treeNodeTab_method_tab.CopyTo(treeNodeTab_tab, 0);
+            treeNodeTab_attribut_tab.CopyTo(treeNodeTab_tab, treeNodeTab_method_tab.Length);
+
+            //#############################################################################################################
+            System.Windows.Forms.TreeNode[] treeNodeTab_method_math = new System.Windows.Forms.TreeNode[] {
+                new System.Windows.Forms.TreeNode("Abs()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Acos()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Asin()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Atan()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Atan2()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("BigMul()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Ceiling()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Cos()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Cosh()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("DivRem()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Exp()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Floor()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("IEEERemainder()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Log()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Log10()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Max()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Min()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Pow()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Round()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Sign()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Sin()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Sinh()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Sqrt()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Tan()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Tanh()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Truncate()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Sinh()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Sqrt()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Tan()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Tanh()", treeNodeTab_simpleVar),
+                new System.Windows.Forms.TreeNode("Truncate()", treeNodeTab_simpleVar)
+            };
+
+            foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_method_math)
+            {
+                Tnode.Name = Tnode.Text;
+                Tnode.Tag = "method";
+            }
+
+
+            System.Windows.Forms.TreeNode[] treeNodeTab_attribut_math = new System.Windows.Forms.TreeNode[] {
+                new System.Windows.Forms.TreeNode("E"),
+                new System.Windows.Forms.TreeNode("PI")
+            };
+            foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_attribut_math)
+            {
+                Tnode.Name = Tnode.Text;
+                Tnode.Tag = "property";
+            }
+
+            System.Windows.Forms.TreeNode[] treeNodeTab_math = new System.Windows.Forms.TreeNode[treeNodeTab_method_math.Length + treeNodeTab_attribut_math.Length];
+            treeNodeTab_method_math.CopyTo(treeNodeTab_math, 0);
+            treeNodeTab_attribut_math.CopyTo(treeNodeTab_math, treeNodeTab_method_math.Length);
+
+            //#############################################################################################################
+            //#############################################################################################################
+            //#############################################################################################################
+            System.Windows.Forms.TreeNode treeNode_1 = new System.Windows.Forms.TreeNode("keyword");
+            System.Windows.Forms.TreeNode treeNode_2 = new System.Windows.Forms.TreeNode("classGofus");
+            System.Windows.Forms.TreeNode treeNode_3 = new System.Windows.Forms.TreeNode("Math",treeNodeTab_math);
+
+            System.Windows.Forms.TreeNode treeNode_4 = new System.Windows.Forms.TreeNode("chaine", treeNodeTab_chaine);
+            System.Windows.Forms.TreeNode treeNode_5 = new System.Windows.Forms.TreeNode("simpleVar", treeNodeTab_simpleVar);
+            System.Windows.Forms.TreeNode treeNode_6 = new System.Windows.Forms.TreeNode("tab", treeNodeTab_tab);
             System.Windows.Forms.TreeNode treeNode_7 = new System.Windows.Forms.TreeNode("fonctionVoid");
             
             this.codeTextBox1 = new Moonlight.CodeTextBox();
@@ -116,42 +230,37 @@
             this.codeTextBox1.IntellisenseTree.LineColor = System.Drawing.Color.Empty;
             this.codeTextBox1.IntellisenseTree.Location = new System.Drawing.Point(0, 0);
             this.codeTextBox1.IntellisenseTree.Name = "";
-            treeNode1.Name = "Form";
-            treeNode1.Tag = "class";
 
-            treeNode2.Name = "Forms";
-            treeNode2.Tag = "namespace";
+            treeNode_1.Name = "keyword";
+            treeNode_1.Tag = "class";
 
-            treeNode3.Name = "Windows";
-            treeNode3.Tag = "namespace";
+            treeNode_2.Name = "classGofus";
+            treeNode_2.Tag = "namespace";
 
-            treeNode4.Name = "File";
-            treeNode4.Tag = "class";
+            treeNode_3.Name = "Math";
+            treeNode_3.Tag = "namespace";
 
-            treeNode5.Name = "IO";
-            treeNode5.Tag = "namespace";
-            treeNode5.Text = "IO";
+            treeNode_4.Name = "chaine";
+            treeNode_4.Tag = "class";
 
-            treeNode6.Name = "System";
-            treeNode6.Tag = "namespace";
+            treeNode_5.Name = "simpleVar";
+            treeNode_5.Tag = "class";
 
-            treeNode7.Name = "SysInfoManager";
-            treeNode7.Tag = "class";
+            treeNode_6.Name = "tab";
+            treeNode_6.Tag = "namespace";
 
-            treeNode8.Name = "SysInfo";
-            treeNode8.Tag = "namespace";
+            treeNode_7.Name = "fonctionVoid";
+            treeNode_7.Tag = "class";
 
-            treeNode_5_1.Name = "simpleVar";
-            treeNode_5_1.Tag = "class";
-
-            treeNode_4_1.Name = "chaine";
-            treeNode_4_1.Tag = "class";
 
             this.codeTextBox1.IntellisenseTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode8,
-            treeNode_5_1,
-            treeNode_4_1});
+            treeNode_1,
+            treeNode_2,
+            treeNode_3,
+            treeNode_4,
+            treeNode_5,
+            treeNode_6,
+            treeNode_7});
             this.codeTextBox1.IntellisenseTree.TabIndex = 0;
             this.codeTextBox1.Location = new System.Drawing.Point(0, 0);
             this.codeTextBox1.Name = "codeTextBox1";
