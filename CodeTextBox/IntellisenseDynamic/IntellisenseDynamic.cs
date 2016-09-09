@@ -68,14 +68,13 @@ namespace Moonlight.IntellisenseDynamic
         public void Update(CodeTextBox codeTextbox)
         {
             //bool|byte|sbyte|char|decimal|double|float|int|uint|long|ulong|object|short|ushort
-
-            chainesRegexp = new Regex(@"string (.*?);|string (.*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
-            chainesFonctionRegexp = new Regex(@"string (.*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
-            tableauRegexp = new Regex(@"\[\](.*?);|\[\](.*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
-            tableauFonctionRegexp = new Regex(@"\[\] (.*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
-            simpleVarRegexp = new Regex(@"bool(.*?);|byte (.*?);|sbyte (.*?);|char (.*?);|decimal (.*?);|double (.*?);|float (.*?);|int (.*?);|uint (.*?);|long (.*?);|ulong (.*?);|object (.*?);|short (.*?);|ushort (.*?);|bool (.*?) |byte (.*?) |sbyte (.*?) |char (.*?) |decimal (.*?) |double (.*?) |float (.*?) |int (.*?) |uint (.*?) |long (.*?) |ulong (.*?) |object (.*?) |short (.*?) |ushort (.*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
-            simpleVarFonctionRegexp = new Regex(@"bool (.*?)\(|byte (.*?)\(|sbyte (.*?)\(|char (.*?)\(|decimal (.*?)\(|double (.*?)\(|float (.*?)\(|int (.*?)\(|uint (.*?)\(|long (.*?)\(|ulong (.*?)\(|object (.*?)\(|short (.*?)\(|ushort (.*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
-            voidFonctionRegexp = new Regex(@"void (.*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
+            chainesRegexp = new Regex(@"string ([a-z0-9_]*?);|string ([a-z0-9_]*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
+            chainesFonctionRegexp = new Regex(@"string ([a-z0-9_]*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
+            tableauRegexp = new Regex(@"\[\]([a-z0-9_]*?);|\[\]([a-z0-9_]*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
+            tableauFonctionRegexp = new Regex(@"\[\] ([a-z0-9_]*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
+            simpleVarRegexp = new Regex(@"bool([a-z0-9_]*?);|byte ([a-z0-9_]*?);|sbyte ([a-z0-9_]*?);|char ([a-z0-9_]*?);|decimal ([a-z0-9_]*?);|double ([a-z0-9_]*?);|float ([a-z0-9_]*?);|int ([a-z0-9_]*?);|uint ([a-z0-9_]*?);|long ([a-z0-9_]*?);|ulong ([a-z0-9_]*?);|object ([a-z0-9_]*?);|short ([a-z0-9_]*?);|ushort ([a-z0-9_]*?);|bool ([a-z0-9_]*?) |byte ([a-z0-9_]*?) |sbyte ([a-z0-9_]*?) |char ([a-z0-9_]*?) |decimal ([a-z0-9_]*?) |double ([a-z0-9_]*?) |float ([a-z0-9_]*?) |int ([a-z0-9_]*?) |uint ([a-z0-9_]*?) |long ([a-z0-9_]*?) |ulong ([a-z0-9_]*?) |object ([a-z0-9_]*?) |short ([a-z0-9_]*?) |ushort ([a-z0-9_]*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
+            simpleVarFonctionRegexp = new Regex(@"bool ([a-z0-9_]*?)\(|byte ([a-z0-9_]*?)\(|sbyte ([a-z0-9_]*?)\(|char ([a-z0-9_]*?)\(|decimal ([a-z0-9_]*?)\(|double ([a-z0-9_]*?)\(|float ([a-z0-9_]*?)\(|int ([a-z0-9_]*?)\(|uint ([a-z0-9_]*?)\(|long ([a-z0-9_]*?)\(|ulong ([a-z0-9_]*?)\(|object ([a-z0-9_]*?)\(|short ([a-z0-9_]*?)\(|ushort ([a-z0-9_]*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
+            voidFonctionRegexp = new Regex(@"void ([a-z0-9_]*?)\(", RegexOptions.Compiled | RegexOptions.Multiline);
 
             //Set compiled flag to true
             compiled = true;
@@ -104,13 +103,16 @@ namespace Moonlight.IntellisenseDynamic
             for (regMatch = regexp.Match(line); regMatch.Success; regMatch = regMatch.NextMatch())
             {
                 // Process the words
-                string result = regMatch.Groups[1].Value;
+                int i = 1;
+                while (regMatch.Groups[i].Value.Length == 0)
+                    i++;
+                string result = regMatch.Groups[i].Value;
+
+                if (m_IntellisenseTree.Nodes.Find(result, false).Length != 0)
+                    break;
 
                 TreeNode newNode = new TreeNode(result);
-                foreach (TreeNode nodes in m_IntellisenseTree.Nodes.Find(nodeType, false)[0].Nodes)
-                {
-                    newNode.Nodes.Add(nodes);
-                }
+                newNode = (TreeNode)m_IntellisenseTree.Nodes.Find(nodeType, false)[0].Clone();
                 newNode.Name = result;
                 newNode.Tag = "class";
                 m_IntellisenseTree.Nodes.Add(newNode);
