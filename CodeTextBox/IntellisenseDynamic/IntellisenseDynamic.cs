@@ -106,7 +106,11 @@ namespace Moonlight.IntellisenseDynamic
                 // Process the words
                 string result = regMatch.Groups[1].Value;
 
-                TreeNode newNode = m_IntellisenseTree.Nodes.Find(nodeType, false)[0];
+                TreeNode newNode = new TreeNode(result);
+                foreach (TreeNode nodes in m_IntellisenseTree.Nodes.Find(nodeType, false)[0].Nodes)
+                {
+                    newNode.Nodes.Add(nodes);
+                }
                 newNode.Name = result;
                 newNode.Tag = "class";
                 m_IntellisenseTree.Nodes.Add(newNode);

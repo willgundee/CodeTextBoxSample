@@ -136,9 +136,8 @@ namespace Moonlight.SyntaxHighlight
             typeNamesRegexp = new Regex(typeNames, RegexOptions.Compiled | RegexOptions.Multiline);
             functionsRegexp = new Regex(functions, RegexOptions.Compiled | RegexOptions.Multiline);
             chainesRegexp = new Regex(chaines, RegexOptions.Compiled | RegexOptions.Multiline);
-            //commentsRegexp = new Regex(comments, RegexOptions.Compiled | RegexOptions.Multiline);
+            commentsRegexp = new Regex(comments, RegexOptions.Compiled | RegexOptions.Multiline);
             stringsRegexp = new Regex("\"[^\"\\\\\\r\\n]*(?:\\\\.[^\"\\\\\\r\\n]*)*\"", RegexOptions.Compiled | RegexOptions.Multiline);
-            commentsRegexp = new Regex("test (.*?);|test (.*?) ", RegexOptions.Compiled | RegexOptions.Multiline);
             
             //commentsRegexp = new Regex(syntaxSettings.CommentString + ".*$", RegexOptions.Compiled | RegexOptions.Multiline);
 
