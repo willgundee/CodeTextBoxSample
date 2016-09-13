@@ -501,6 +501,12 @@ namespace Moonlight
         }
         #endregion
 
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            m_IntellisenseManager.HideIntellisenseBox();
+            base.OnMouseClick(e);
+        }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             if (EnablePainting)
@@ -514,6 +520,8 @@ namespace Moonlight
             m_SyntaxHighLighter.DoSyntaxHightlight_CurrentLine(this);
 
             m_IntellisenseDynamic.DoIntellisense_CurrentLine(this, mp_IntellisenseTree);
+
+            m_IntellisenseDynamic.RefreshIntellisense(this, mp_IntellisenseTree);
 
             base.OnTextChanged(e);
         }
@@ -529,8 +537,7 @@ namespace Moonlight
         protected override void OnKeyDown(KeyEventArgs e)
         {
             #region Show Intellisense
-            //if (e.KeyCode >= Keys.A && e.KeyCode <= Keys.Z)
-            if (e.KeyData == mp_IntellisenseKey)
+            if (e.KeyCode >= Keys.A && e.KeyCode <= Keys.Z)
             {
                 m_IntellisenseManager.ShowIntellisenseBox();
                 e.Handled = true;
@@ -541,8 +548,13 @@ namespace Moonlight
 
             if (mp_IntellisenseBox.Visible)
             {
-                #region ESCAPE - Hide Intellisense
+                #region ESCAPE and SPACE - Hide Intellisense
                 if (e.KeyCode == Keys.Escape)
+                {
+                    m_IntellisenseManager.HideIntellisenseBox();
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Space)
                 {
                     m_IntellisenseManager.HideIntellisenseBox();
                     e.Handled = true;
@@ -607,6 +619,7 @@ namespace Moonlight
                 {
                     m_IntellisenseManager.ConfirmIntellisense();
                     e.Handled = true;
+                    e.SuppressKeyPress = true;
                 }
                 else if (e.KeyCode == Keys.Enter)
                 {
