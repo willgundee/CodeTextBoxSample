@@ -38,7 +38,7 @@ namespace Moonlight.IntellisenseDynamic
 
             ProcessLine(codeTextbox, line, lineStart, m_IntellisenseTree);
         }
-        public void DoIntellisense_Selection(CodeTextBox codeTextbox, int selectionStart, int selectionLength)
+        public void DoIntellisense_Selection(CodeTextBox codeTextbox, int selectionStart, int selectionLength, TreeView m_IntellisenseTree)
         {
             #region Compile regexs if necessary
             if (!compiled)
@@ -47,7 +47,7 @@ namespace Moonlight.IntellisenseDynamic
             }
             #endregion
 
-            ProcessSelection(codeTextbox, selectionStart, selectionLength);
+            ProcessSelection(codeTextbox, selectionStart, selectionLength, m_IntellisenseTree);
         }
         public void DoIntellisense_AllLines(CodeTextBox codeTextbox, TreeView m_IntellisenseTree)
         {
@@ -90,7 +90,7 @@ namespace Moonlight.IntellisenseDynamic
         /// <param name="lineStart"></param>
         /// <param name="regexp"></param>
         /// <param name="color"></param>
-        private void ProcessRegex(CodeTextBox codeTextbox, string line, int lineStart, Regex regexp, string nodeType, TreeView m_IntellisenseTree)
+        private void ProcessRegex(CodeTextBox codeTextbox, string line, int lineStart, Regex regexp, string nodeType, string nodeTag, TreeView m_IntellisenseTree)
         {
             if (regexp == null)
             {
@@ -114,7 +114,7 @@ namespace Moonlight.IntellisenseDynamic
                 TreeNode newNode = new TreeNode(result);
                 newNode = (TreeNode)m_IntellisenseTree.Nodes.Find(nodeType, false)[0].Clone();
                 newNode.Name = result;
-                newNode.Tag = "class";
+                newNode.Tag = nodeTag;
                 m_IntellisenseTree.Nodes.Add(newNode);
             }
         }
@@ -134,27 +134,27 @@ namespace Moonlight.IntellisenseDynamic
             codeTextbox.SelectionLength = line.Length;
 
             // Process the simpleVar
-            ProcessRegex(codeTextbox, line, lineStart, simpleVarRegexp, "simpleVar", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, line, lineStart, simpleVarRegexp, "simpleVar", "Property", m_IntellisenseTree);
 
-            ProcessRegex(codeTextbox, line, lineStart, simpleVarFonctionRegexp, "simpleVar", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, line, lineStart, simpleVarFonctionRegexp, "simpleVar", "Method", m_IntellisenseTree);
 
             // Process the string
-            ProcessRegex(codeTextbox, line, lineStart, chainesRegexp, "chaine", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, line, lineStart, chainesRegexp, "chaine", "Property", m_IntellisenseTree);
 
-            ProcessRegex(codeTextbox, line, lineStart, chainesFonctionRegexp, "chaine", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, line, lineStart, chainesFonctionRegexp, "chaine", "Method", m_IntellisenseTree);
 
             // Process the simpleVar
-            ProcessRegex(codeTextbox, line, lineStart, tableauRegexp, "tab", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, line, lineStart, tableauRegexp, "tab", "Property", m_IntellisenseTree);
 
-            ProcessRegex(codeTextbox, line, lineStart, tableauFonctionRegexp, "tab", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, line, lineStart, tableauFonctionRegexp, "tab", "Method", m_IntellisenseTree);
             
             // Process the string
-            ProcessRegex(codeTextbox, line, lineStart, voidFonctionRegexp, "fonctionVoid", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, line, lineStart, voidFonctionRegexp, "fonctionVoid", "Method", m_IntellisenseTree);
 
             codeTextbox.SelectionStart = nPosition;
             codeTextbox.SelectionLength = 0;
         }
-        private void ProcessSelection(CodeTextBox codeTextbox, int selectionStart, int selectionLength)
+        private void ProcessSelection(CodeTextBox codeTextbox, int selectionStart, int selectionLength, TreeView m_IntellisenseTree)
         {
             // Save the position
             int nPosition = selectionStart;
@@ -163,11 +163,29 @@ namespace Moonlight.IntellisenseDynamic
             codeTextbox.SelectionLength = selectionLength;
             string text = codeTextbox.SelectedText;
 
+            // Process the simpleVar
+            ProcessRegex(codeTextbox, text, selectionStart, simpleVarRegexp, "simpleVar", "Property", m_IntellisenseTree);
+
+            ProcessRegex(codeTextbox, text, selectionStart, simpleVarFonctionRegexp, "simpleVar", "Method", m_IntellisenseTree);
+
+            // Process the string
+            ProcessRegex(codeTextbox, text, selectionStart, chainesRegexp, "chaine", "Property", m_IntellisenseTree);
+
+            ProcessRegex(codeTextbox, text, selectionStart, chainesFonctionRegexp, "chaine", "Method", m_IntellisenseTree);
+
+            // Process the simpleVar
+            ProcessRegex(codeTextbox, text, selectionStart, tableauRegexp, "tab", "Property", m_IntellisenseTree);
+
+            ProcessRegex(codeTextbox, text, selectionStart, tableauFonctionRegexp, "tab", "Method", m_IntellisenseTree);
+
+            // Process the string
+            ProcessRegex(codeTextbox, text, selectionStart, voidFonctionRegexp, "fonctionVoid", "Method", m_IntellisenseTree);
+
 
             codeTextbox.SelectionStart = nPosition;
             codeTextbox.SelectionLength = 0;
         }
-        public void ProcessAllLines(CodeTextBox codeTextbox, TreeView m_IntellisenseTree)
+        private void ProcessAllLines(CodeTextBox codeTextbox, TreeView m_IntellisenseTree)
         {
             // Save the position
             int nPosition = codeTextbox.SelectionStart;
@@ -175,22 +193,22 @@ namespace Moonlight.IntellisenseDynamic
             codeTextbox.SelectionLength = codeTextbox.Text.Length;
 
             // Process the simpleVar
-            ProcessRegex(codeTextbox, codeTextbox.Text, 0, simpleVarRegexp, "simpleVar", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, simpleVarRegexp, "simpleVar", "Property", m_IntellisenseTree);
 
-            ProcessRegex(codeTextbox, codeTextbox.Text, 0, simpleVarFonctionRegexp, "simpleVar", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, simpleVarFonctionRegexp, "simpleVar", "Method", m_IntellisenseTree);
 
             // Process the string
-            ProcessRegex(codeTextbox, codeTextbox.Text, 0, chainesRegexp, "chaine", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, chainesRegexp, "chaine", "Property", m_IntellisenseTree);
 
-            ProcessRegex(codeTextbox, codeTextbox.Text, 0, chainesFonctionRegexp, "chaine", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, chainesFonctionRegexp, "chaine", "Method", m_IntellisenseTree);
 
             // Process the simpleVar
-            ProcessRegex(codeTextbox, codeTextbox.Text, 0, tableauRegexp, "tab", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, tableauRegexp, "tab", "Property", m_IntellisenseTree);
 
-            ProcessRegex(codeTextbox, codeTextbox.Text, 0, tableauFonctionRegexp, "tab", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, tableauFonctionRegexp, "tab", "Method", m_IntellisenseTree);
 
             // Process the string
-            ProcessRegex(codeTextbox, codeTextbox.Text, 0, voidFonctionRegexp, "fonctionVoid", m_IntellisenseTree);
+            ProcessRegex(codeTextbox, codeTextbox.Text, 0, voidFonctionRegexp, "fonctionVoid", "Method", m_IntellisenseTree);
 
             codeTextbox.SelectionStart = nPosition;
             codeTextbox.SelectionLength = 0;

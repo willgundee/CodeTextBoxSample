@@ -318,10 +318,10 @@
             treeNode_1.Tag = "class";
 
             treeNode_2.Name = "classGofus";
-            treeNode_2.Tag = "namespace";
+            treeNode_2.Tag = "class";
 
             treeNode_3.Name = "Math";
-            treeNode_3.Tag = "namespace";
+            treeNode_3.Tag = "class";
 
             treeNode_4.Name = "chaine";
             treeNode_4.Tag = "class";
@@ -330,10 +330,11 @@
             treeNode_5.Tag = "class";
 
             treeNode_6.Name = "tab";
-            treeNode_6.Tag = "namespace";
+            treeNode_6.Tag = "class";
 
             treeNode_7.Name = "fonctionVoid";
             treeNode_7.Tag = "class";
+
             System.Windows.Forms.TreeNode[] treeNode_root = new System.Windows.Forms.TreeNode[] {
             treeNode_1,
             treeNode_2,
