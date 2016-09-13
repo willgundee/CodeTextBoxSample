@@ -409,7 +409,7 @@ namespace Moonlight
                         this.SelectedText = text;
 
                         m_SyntaxHighLighter.DoSyntaxHightlight_Selection(this, selectionStart, selectionLength);
-                        m_IntellisenseDynamic.DoIntellisense_Selection(this, selectionStart, selectionLength);
+                        m_IntellisenseDynamic.DoIntellisense_Selection(this, selectionStart, selectionLength, mp_IntellisenseTree);
                         #endregion
                     }
                     break;
