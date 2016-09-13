@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             //#############################################################################################################
-            
+
             System.Windows.Forms.TreeNode[] treeNodeTab_method_chaine = new System.Windows.Forms.TreeNode[] {
                 new System.Windows.Forms.TreeNode("Clone()"),
                 new System.Windows.Forms.TreeNode("CompareTo()"),
@@ -184,17 +184,100 @@
             treeNodeTab_attribut_math.CopyTo(treeNodeTab_math, treeNodeTab_method_math.Length);
 
             //#############################################################################################################
+            System.Windows.Forms.TreeNode[] treeNodeTab_keyword = new System.Windows.Forms.TreeNode[] {
+                new System.Windows.Forms.TreeNode("abstract"),
+                new System.Windows.Forms.TreeNode("as"),
+                new System.Windows.Forms.TreeNode("base"),
+                new System.Windows.Forms.TreeNode("bool"),
+                new System.Windows.Forms.TreeNode("break"),
+                new System.Windows.Forms.TreeNode("byte"),
+                new System.Windows.Forms.TreeNode("case"),
+                new System.Windows.Forms.TreeNode("catch"),
+                new System.Windows.Forms.TreeNode("char"),
+                new System.Windows.Forms.TreeNode("checked"),
+                new System.Windows.Forms.TreeNode("class"),
+                new System.Windows.Forms.TreeNode("const"),
+                new System.Windows.Forms.TreeNode("continue"),
+                new System.Windows.Forms.TreeNode("decimal"),
+                new System.Windows.Forms.TreeNode("default"),
+                new System.Windows.Forms.TreeNode("delegate"),
+                new System.Windows.Forms.TreeNode("do"),
+                new System.Windows.Forms.TreeNode("double"),
+                new System.Windows.Forms.TreeNode("else"),
+                new System.Windows.Forms.TreeNode("enum"),
+                new System.Windows.Forms.TreeNode("event"),
+                new System.Windows.Forms.TreeNode("explicit"),
+                new System.Windows.Forms.TreeNode("extern"),
+                new System.Windows.Forms.TreeNode("false"),
+                new System.Windows.Forms.TreeNode("finally"),
+                new System.Windows.Forms.TreeNode("fixed"),
+                new System.Windows.Forms.TreeNode("float"),
+                new System.Windows.Forms.TreeNode("for"),
+                new System.Windows.Forms.TreeNode("foreach"),
+                new System.Windows.Forms.TreeNode("goto"),
+                new System.Windows.Forms.TreeNode("if"),
+                new System.Windows.Forms.TreeNode("implicit"),
+                new System.Windows.Forms.TreeNode("in"),
+                new System.Windows.Forms.TreeNode("int"),
+                new System.Windows.Forms.TreeNode("interface"),
+                new System.Windows.Forms.TreeNode("internal"),
+                new System.Windows.Forms.TreeNode("is"),
+                new System.Windows.Forms.TreeNode("lock"),
+                new System.Windows.Forms.TreeNode("long"),
+                new System.Windows.Forms.TreeNode("namespace"),
+                new System.Windows.Forms.TreeNode("new"),
+                new System.Windows.Forms.TreeNode("null"),
+                new System.Windows.Forms.TreeNode("object"),
+                new System.Windows.Forms.TreeNode("operator"),
+                new System.Windows.Forms.TreeNode("out"),
+                new System.Windows.Forms.TreeNode("override"),
+                new System.Windows.Forms.TreeNode("params"),
+                new System.Windows.Forms.TreeNode("private"),
+                new System.Windows.Forms.TreeNode("protected"),
+                new System.Windows.Forms.TreeNode("public"),
+                new System.Windows.Forms.TreeNode("readonly"),
+                new System.Windows.Forms.TreeNode("ref"),
+                new System.Windows.Forms.TreeNode("return"),
+                new System.Windows.Forms.TreeNode("sbyte"),
+                new System.Windows.Forms.TreeNode("sealed"),
+                new System.Windows.Forms.TreeNode("short"),
+                new System.Windows.Forms.TreeNode("sizeof"),
+                new System.Windows.Forms.TreeNode("stackalloc"),
+                new System.Windows.Forms.TreeNode("static"),
+                new System.Windows.Forms.TreeNode("string"),
+                new System.Windows.Forms.TreeNode("struct"),
+                new System.Windows.Forms.TreeNode("switch"),
+                new System.Windows.Forms.TreeNode("this"),
+                new System.Windows.Forms.TreeNode("throw"),
+                new System.Windows.Forms.TreeNode("true"),
+                new System.Windows.Forms.TreeNode("try"),
+                new System.Windows.Forms.TreeNode("typeof"),
+                new System.Windows.Forms.TreeNode("uint"),
+                new System.Windows.Forms.TreeNode("ulong"),
+                new System.Windows.Forms.TreeNode("unchecked"),
+                new System.Windows.Forms.TreeNode("unsafe"),
+                new System.Windows.Forms.TreeNode("ushort"),
+                new System.Windows.Forms.TreeNode("using"),
+                new System.Windows.Forms.TreeNode("virtual"),
+                new System.Windows.Forms.TreeNode("void"),
+                new System.Windows.Forms.TreeNode("volatile"),
+                new System.Windows.Forms.TreeNode("while")
+            };
+            foreach (System.Windows.Forms.TreeNode Tnode in treeNodeTab_keyword)
+            {
+                Tnode.Name = Tnode.Text;
+                Tnode.Tag = "namespace";
+            }
             //#############################################################################################################
             //#############################################################################################################
             System.Windows.Forms.TreeNode treeNode_1 = new System.Windows.Forms.TreeNode("keyword");
             System.Windows.Forms.TreeNode treeNode_2 = new System.Windows.Forms.TreeNode("classGofus");
-            System.Windows.Forms.TreeNode treeNode_3 = new System.Windows.Forms.TreeNode("Math",treeNodeTab_math);
-
+            System.Windows.Forms.TreeNode treeNode_3 = new System.Windows.Forms.TreeNode("Math", treeNodeTab_math);
             System.Windows.Forms.TreeNode treeNode_4 = new System.Windows.Forms.TreeNode("chaine", treeNodeTab_chaine);
             System.Windows.Forms.TreeNode treeNode_5 = new System.Windows.Forms.TreeNode("simpleVar", treeNodeTab_simpleVar);
             System.Windows.Forms.TreeNode treeNode_6 = new System.Windows.Forms.TreeNode("tab", treeNodeTab_tab);
             System.Windows.Forms.TreeNode treeNode_7 = new System.Windows.Forms.TreeNode("fonctionVoid");
-            
+
             this.codeTextBox1 = new Moonlight.CodeTextBox();
             this.SuspendLayout();
             // 
@@ -251,16 +334,20 @@
 
             treeNode_7.Name = "fonctionVoid";
             treeNode_7.Tag = "class";
-
-
-            this.codeTextBox1.IntellisenseTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode[] treeNode_root = new System.Windows.Forms.TreeNode[] {
             treeNode_1,
             treeNode_2,
             treeNode_3,
             treeNode_4,
             treeNode_5,
             treeNode_6,
-            treeNode_7});
+            treeNode_7};
+
+            System.Windows.Forms.TreeNode[] treeNode_Intellisense = new System.Windows.Forms.TreeNode[treeNode_root.Length + treeNodeTab_keyword.Length];
+            treeNodeTab_keyword.CopyTo(treeNode_Intellisense, 0);
+            treeNode_root.CopyTo(treeNode_Intellisense, treeNodeTab_keyword.Length);
+
+            this.codeTextBox1.IntellisenseTree.Nodes.AddRange(treeNode_Intellisense);
             this.codeTextBox1.IntellisenseTree.TabIndex = 0;
             this.codeTextBox1.Location = new System.Drawing.Point(0, 0);
             this.codeTextBox1.Name = "codeTextBox1";
@@ -280,7 +367,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
         }
-        
+
         #endregion
 
         private Moonlight.CodeTextBox codeTextBox1;
