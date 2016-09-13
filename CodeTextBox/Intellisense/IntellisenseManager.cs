@@ -212,7 +212,10 @@ namespace Moonlight.Intellisense
         public void TypeAlphaNumerical(char c)
         {
             CheckScopeOperator(c);
-            UpdateIntellisense(false,"",c.ToString());
+            if (!UpdateIntellisense(false, "", c.ToString()))
+            {
+                HideIntellisenseBox();
+            }
         }
         /// <summary>
         /// Calls, when a non-alphanumerical character typed.
@@ -306,6 +309,7 @@ namespace Moonlight.Intellisense
                 //Not show, when no elements available...
                 if (m_CodeTextBox.IntellisenseBox.Items.Count > 0)
                 {
+                    m_CodeTextBox.IntellisenseBox.SelectedIndex = 0;
                     return true;
                 }
                 return false;
