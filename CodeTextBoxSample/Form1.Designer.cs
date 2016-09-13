@@ -58,6 +58,7 @@
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "method";
+                Tnode.Text = "system";
             }
             System.Windows.Forms.TreeNode[] treeNodeTab_attribut_chaine = new System.Windows.Forms.TreeNode[] {
                 new System.Windows.Forms.TreeNode("Length")
@@ -66,6 +67,7 @@
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "property";
+                Tnode.Text = "system";
             }
             System.Windows.Forms.TreeNode[] treeNodeTab_chaine = new System.Windows.Forms.TreeNode[treeNodeTab_method_chaine.Length + treeNodeTab_attribut_chaine.Length];
             treeNodeTab_method_chaine.CopyTo(treeNodeTab_chaine, 0);
@@ -83,6 +85,7 @@
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "class";
+                Tnode.Text = "system";
             }
             //############################################################################################################# 
             System.Windows.Forms.TreeNode[] treeNodeTab_method_tab = new System.Windows.Forms.TreeNode[] {
@@ -106,6 +109,7 @@
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "method";
+                Tnode.Text = "system";
             }
 
             System.Windows.Forms.TreeNode[] treeNodeTab_attribut_tab = new System.Windows.Forms.TreeNode[] {
@@ -121,6 +125,7 @@
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "property";
+                Tnode.Text = "system";
             }
 
             System.Windows.Forms.TreeNode[] treeNodeTab_tab = new System.Windows.Forms.TreeNode[treeNodeTab_method_tab.Length + treeNodeTab_attribut_tab.Length];
@@ -166,6 +171,7 @@
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "method";
+                Tnode.Text = "system";
             }
 
 
@@ -177,6 +183,7 @@
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "property";
+                Tnode.Text = "system";
             }
 
             System.Windows.Forms.TreeNode[] treeNodeTab_math = new System.Windows.Forms.TreeNode[treeNodeTab_method_math.Length + treeNodeTab_attribut_math.Length];
@@ -267,6 +274,7 @@
             {
                 Tnode.Name = Tnode.Text;
                 Tnode.Tag = "namespace";
+                Tnode.Text = "system";
             }
             //#############################################################################################################
             //#############################################################################################################
@@ -316,24 +324,31 @@
 
             treeNode_1.Name = "keyword";
             treeNode_1.Tag = "class";
+            treeNode_1.Text = "system";
 
             treeNode_2.Name = "classGofus";
             treeNode_2.Tag = "class";
+            treeNode_2.Text = "system";
 
             treeNode_3.Name = "Math";
             treeNode_3.Tag = "class";
+            treeNode_3.Text = "system";
 
             treeNode_4.Name = "chaine";
             treeNode_4.Tag = "class";
+            treeNode_4.Text = "system";
 
             treeNode_5.Name = "simpleVar";
             treeNode_5.Tag = "class";
+            treeNode_5.Text = "system";
 
             treeNode_6.Name = "tab";
             treeNode_6.Tag = "class";
+            treeNode_6.Text = "system";
 
             treeNode_7.Name = "fonctionVoid";
             treeNode_7.Tag = "class";
+            treeNode_7.Text = "system";
 
             System.Windows.Forms.TreeNode[] treeNode_root = new System.Windows.Forms.TreeNode[] {
             treeNode_1,
